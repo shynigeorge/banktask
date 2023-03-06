@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<title> Registration or Sign Up form in HTML CSS | CodingLab </title>-->
+
+    <link rel="stylesheet" href="{% static 'css/registr/style.css'%}">
+      <style>
+      .style .select{
+          width: 120%;
+          background:url('arrow.png') no-repeat;
+          background-position:80% center;
+        }
+        .style{
+                font-size: 13px;
+              padding: 10px 8px 10px 14px;
+              background: #fff;
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              overflow: hidden;
+              position: relative;
+        }
+        .style .select select{
+        background: transparent;
+          line-height: 1;
+          border: 0;
+          padding: 0;
+          border-radius: 0;
+          width: 120%;
+          position: relative;
+          z-index: 10;
+          font-size: 1em;
+        }
+
+
+      </style>
+
+   </head>
+<body>
+ {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">
+      ×
+      </button>
+      <strong>{{message}}</strong>
+    </div>
+ {% endfor %}
+{% endif %}
+  <div class="wrapper">
+
+    <h2>Registration</h2>
+    <form action="registration" method="post" id="personForm" data-branch-url="{% url 'ajax_load_branch' %}">
+         {% csrf_token %}
+      <div class="input-box">
+        <input type="text" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="input-box">
+        <input type="text" name="dob" placeholder="Enter your DOB" required>
+      </div>
+       <div class="input-box">
+        <input type="text" name="age" placeholder="Enter your age" required>
+      </div>
+     <div>
+
+        <p>Gender:</p>
+        <input type="radio" id="age1" name="gender" value="female"><label for="age1">Female</label>
+        <input type="radio" id="age2" name="gender" value="male"><label for="age2">Male</label>
+    </div>
+
+      <div class="input-box">
+        <input type="text" name="mobile" placeholder="Enter your mobile no" required>
+      </div>
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-box">
+        <input type="text" name="address" placeholder="Enter your address" required>
+      </div>
+
+      <div class="input-box" class="select">
+
+        <label for="id_district">District:</label>
+
+                <select name="district" class="style" id="id_district">
+
+                    <option  selected="selected">selected</option>
+                     {% for i in obj %}
+                  <option >{{i.name}}</option>
+                    {% endfor %}
+
+                </select>
+      </div>
+      <div class="input-box" class="select">
+
+       <label for="id_branch">Branch:</label>
+
+                <select name="branch" id="id_branch" class="style">
+
+                    <option  selected="selected">selected</option>
+                      {% for br in b %}
+                  <option value="{{ br.pk }}" >{{ br.branch }}</option>
+                        {% endfor %}
+                </select>
+      </div>
+
+
+      <div class="input-box" class="select">
+         <label for="cars">Account Type:</label>
+
+                <select name="accotype"  id="cars" class="style">
+                    <option  selected="selected">selected</option>
+                   <option value="savingsaccount">Savings Account</option>
+                  <option value="currentaccount">Current Account</option>
+
+
+                </select>
+      </div>
+      <div>
+      <label for="cars">Meterial provided:</label>
+      <div class="policy">
+        <input type="checkbox" name="mp" class="checkoption"  value="debitcard">
+        <h3>Debit Card</h3>
+      </div>
+      <div class="policy">
+      <input type="checkbox" name="mp" class="checkoption"  value="creditcard">
+        <h3>Credit Card</h3>
+      </div>
+      <div class="policy">
+       <input type="checkbox" name="mp" class="checkoption"  value="chequebook">
+        <h3>Cheque Book</h3>
+      </div>
+        </div>
+      <div class="input-box button">
+        <input type="Submit" value="Register Now">
+      </div>
+
+
+
+    </form>
+      <div><a href="/">Home</a></div>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_district").change(function () {
+        const url = $("#personForm").attr("data-branch-url");  // get the url of the `load_cities` view
+        const districtId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'district_id': districtId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_branch").html(data);  // replace the contents of the city input with the data that came from the server
+
+            }
+        });
+
+    });
+</script>
+
+  </div>
+  <div>
+    {% for message in messages %}
+    <h2>{{message}}</h2>
+    {% endfor %}
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script type="text/javascript">
+   $(document).ready(function(){
+
+      $('.checkoption').click(function() {
+         $('.checkoption').not(this).prop('checked', false);
+      });
+
+   });
+  </script>
+
+
+
+</body>
+</html>

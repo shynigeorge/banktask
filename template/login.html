@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'><link rel="stylesheet" href="{% static 'css/logincss/style.css'%}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="login-form">
+  <form method="post">
+    {% csrf_token %}
+    <h1>Login</h1>
+    <div class="content">
+      <div class="input-field">
+        <input type="text" name="username" placeholder="Username" autocomplete="nope">
+      </div>
+      <div class="input-field">
+        <input type="password"  name="password" placeholder="Password" autocomplete="new-password">
+      </div>
+      <a href="#" class="link">Forgot Your Password?</a>
+    </div>
+
+    <div class="action">
+      <button><a href="/signup">Register</a></button>
+      <button>Sign in</button>
+
+
+    </div>
+  </form>
+</div>
+<!-- partial -->
+  <script  src="{% static 'js/script.js"></script>
+<script>
+    {% if alert %}
+    alert("Invalid Username or Password.")
+    document.location = "/login"
+    {% endif %}
+</script>
+</body>
+</html>
