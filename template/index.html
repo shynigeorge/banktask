@@ -31,46 +31,6 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <style>
-   .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
 
 </style>
    </head>
@@ -126,22 +86,24 @@
                                  <li class="login_btn"><a href="/login">Login</a></li>
                                  <li><a href="/signup">Sign Up</a></li>
                                   <li>
-                                     <div class="dropdown">
-                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       Branch
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                       <div class="dropdown">
+                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                           Dropdown Branches
+                                         </button>
+                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                        <ul>
-                                            {% for i in br %}
-                                           <li>
-                                           <a class="dropdown-item"  href="https://en.wikipedia.org">{{ i.branch }}</a>
-                                           </li>
-                                            {% endfor %}
-                                        </ul>
+                                           <a class="dropdown-item" href="https://en.wikipedia.org">Kottayam</a>
+                                            <a class="dropdown-item" href="https://en.wikipedia.org">Ernakulam</a>
+                                            <a class="dropdown-item" href="https://en.wikipedia.org">Alapuzha
+                                               <a class="dropdown-item" href="https://en.wikipedia.org">Kollam</a>
+                                               {% for i in obj %}
+                                                <a class="dropdown-item" href="https://en.wikipedia.org">{{i.name}}</a>
+                                                {% endfor %}
 
-                                      </div>
-                                    </div>
+                                         </div>
+                                       </div>
+
+
                                   </li>
                                  <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
                               </ul>
