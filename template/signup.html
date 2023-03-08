@@ -29,19 +29,17 @@
 
 <body>
 
-{% if error %}
-{{ error }}
 
-<br/>
-<br/>
-{% endif %}
+
+
+
     <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
         <div class="wrapper wrapper--w680">
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Registration Info</h2>
-                    <form  action="signup" method="POST">
+                    <form   method="POST">
                           {% csrf_token %}
                         <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="USERNAME" name="username">
