@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from bankapp.models import Branch, District, Register
+from bankapp.models import City, District, Register
 
-admin.site.register(Branch)
+admin.site.register(City)
 admin.site.register(District)
 admin.site.register(Register)
