@@ -75,7 +75,7 @@ def registration(request):
         form = AccountForm()
     obj = District.objects.all()
     br=City.objects.all()
-    return render(request, 'account.html', {'form': form,'obj':obj,'br':br})
+    return render(request, 'registration.html', {'form': form,'obj':obj,'br':br})
 
 def person_update_view(request, pk):
     person = get_object_or_404(Register, id=pk)
@@ -85,7 +85,7 @@ def person_update_view(request, pk):
         if form.is_valid():
             form.save()
             return redirect('person_change', id=pk)
-    return render(request, 'account.html', {'form': form})
+    return render(request, 'registration.html', {'form': form})
 
 
 def load_branch(request):
